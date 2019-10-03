@@ -1,6 +1,6 @@
 <#
 ===================================================================================
-Paessler PRTG Sensor to check SCCM's synchronization status with Microsoft's update catalog
+Paessler PRTG Sensor to check the progress/status of SCCM Software Update deployments.
 ===================================================================================
 Author:       Drew Morrigan
 Script:       SCCMSyncStatus.ps1
