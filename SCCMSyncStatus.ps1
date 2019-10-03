@@ -1,3 +1,16 @@
+<#
+===================================================================================
+Paessler PRTG Sensor to check SCCM's synchronization status with Microsoft's update catalog
+===================================================================================
+Author:       Drew Morrigan
+Script:       SCCMSyncStatus.ps1
+Version:      1.5
+Date:         3 Oct 2019
+Environment:  Windows Server 2016, SCCM Current Build
+Scriptpath:   C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML
+Scripttype:   EXE/Script Advanced
+#>
+
 $module = (Join-Path $(Split-Path $env:SMS_ADMIN_UI_PATH) ConfigurationManager.psd1)
 
 Import-module $module

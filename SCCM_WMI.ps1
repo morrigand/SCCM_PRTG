@@ -1,4 +1,17 @@
-$ComputerName="stargazer"
+<#
+===================================================================================
+Paessler PRTG Sensor to check SCCM's synchronization status with Microsoft's update catalog
+===================================================================================
+Author:       Drew Morrigan
+Script:       SCCMSyncStatus.ps1
+Version:      2
+Date:         3 Oct 2019
+Environment:  Windows Server 2016, SCCM Current Build
+Scriptpath:   C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML
+Scripttype:   EXE/Script Advanced
+#>
+
+$ComputerName = # Enter the name of your SCCM server here
 
 $cutoff = (get-date).addDays(-30)
 
