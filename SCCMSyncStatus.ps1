@@ -4,8 +4,8 @@ Paessler PRTG Sensor to check SCCM's synchronization status with Microsoft's upd
 ===================================================================================
 Author:       Drew Morrigan
 Script:       SCCMSyncStatus.ps1
-Version:      1.5
-Date:         3 Oct 2019
+Version:      1.5.1
+Date:         7 Oct 2019
 Environment:  Windows Server 2016, SCCM Current Build
 Scriptpath:   C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML
 Scripttype:   EXE/Script Advanced
@@ -15,15 +15,12 @@ $module = (Join-Path $(Split-Path $env:SMS_ADMIN_UI_PATH) ConfigurationManager.p
 
 Import-module $module
 
-$SiteCode = Get-PSDrive -PSProvider CMSITE
-pushd "$($SiteCode.Name):\"
-
-$syncResult = get-cmsoftwareupdatesyncstatus
-
-popd
+$ComputerName = # Enter the name of your SCCM server/SUP here
+$syncResult = Get-WmiObject -Namespace "root\sms\site_PSC" -Class SMS_SUPSyncStatus -ComputerName $ComputerName
 
 $timestamp = get-date
-$timeDiff = $timestamp - $syncResult.lastSuccessfulSyncTime
+$syncTime = $syncResult.ConvertToDateTime($syncResult.lastsuccessfulSyncTime)
+$timeDiff = $timestamp - $syncTime
 
 $syncCode = $syncResult.lastSyncErrorCode
 
@@ -43,10 +40,10 @@ $xmlOutput = $xmlOutput + "<result>
 <value>$timeDiff</value>
 <unit>TimeHours</unit>
 <float>1</float>
-<DecimalMode>All</DecimalMode>
+<DecimalMode>Auto</DecimalMode>
 <limitMode>1</limitMode>
 <limitMaxError>170</limitMaxError>
-<LimitErrorMsg>SCCM has not been able to sync with Microsoft update in 7 days.</LimitErrorMsg>
+<LimitErrorMsg>SCCM has not been able to sync with Microsoft Update in 7 days.</LimitErrorMsg>
 </result>
 "
 
