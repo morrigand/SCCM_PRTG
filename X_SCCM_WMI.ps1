@@ -11,6 +11,9 @@ Scriptpath:   C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML
 Scripttype:   EXE/Script Advanced
 #>
 
+# I created a better version of this script.  You're free to use/tweak it, but it is deprecated.
+# (I know you can do that with entire repositories but I don't think you can with individual files)
+
 $ComputerName = # Enter the name of your SCCM server here
 
 $cutoff = (get-date).addDays(-30)
