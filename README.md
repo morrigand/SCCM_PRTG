@@ -2,8 +2,7 @@
 Scripts to allow for monitoring of SCCM software update activities via PRTG
 
 Notes about SCCMSyncStatus.ps1:
-- The SCCM console will need to be installed on the PRTG probe that is running the script.
-- I changed this script to now use WMI instead of the SCCM-specific Powershell cmdlets, as I would get no results in the sensor unless a session of the user account that was running the script from PRTG had a pre-existing session if the PS cmdlets were used.  Switching to WMI removes this 'requirement.'
+- I changed this script to now use WMI instead of the SCCM-specific Powershell cmdlets, as I would get no results in the sensor unless a session of the user account that was running the script from PRTG had a pre-existing session if the PS cmdlets were used.  Switching to WMI removes this 'requirement.'  This also means that the SCCM console no longer needs to be installed on the PRTG server.
 
 Notes about SCCM_Deployments.ps1:
 - Instead of creating 3 channels per deployment, this sensor is intended to be executed attached to a sensor with the name of the device collection you wish to monitor.  This changes the limit of deployments you can monitor from 16 to the number of remaining licensed sensors you have.  This will also require that you add "%device" (with the quotes, in case your collection names have spaces) as a parameter when setting up the sensor.
