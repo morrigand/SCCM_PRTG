@@ -11,10 +11,6 @@ Scriptpath:   C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML
 Scripttype:   EXE/Script Advanced
 #>
 
-$module = (Join-Path $(Split-Path $env:SMS_ADMIN_UI_PATH) ConfigurationManager.psd1)
-
-Import-module $module
-
 $ComputerName = # Enter the name of your SCCM server/SUP here
 $syncResult = Get-WmiObject -Namespace "root\sms\site_PSC" -Class SMS_SUPSyncStatus -ComputerName $ComputerName
 
